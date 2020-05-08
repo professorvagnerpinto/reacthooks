@@ -9,6 +9,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity, Text, TextInput} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import submitName from './src/components/submitName';
 
 /*
     Screen Home.
@@ -33,11 +34,21 @@ const UsoDoUseStateScreen = ()=>{
     //state + seu setter = valor do state (na ordem de declaração)
     const [name, setName] = useState('Rafael');
 
+    const handlerButtonClick = ()=>{
+        submitName(name, setName); //manda como parâmetro o state e o seu setter
+        /*
+            Isso permite que um componente possa acessar a state de outro componente, ação que era proibida
+            na versão com classes (tinha que utilizar as props para isso).
+         */
+    }
+
     return(
         <View style={styles.containerOutrasScreens}>
             <Text style={styles.text}>Bem vindo (a)</Text>
             <TextInput style={styles.textInput} value={name} onChangeText={text=>setName(text)} />
-            <Text>Olá, {name}</Text>
+            <TouchableOpacity style={styles.button} onPress={handlerButtonClick}>
+                <Text style={styles.textButton}>Enviar</Text>
+            </TouchableOpacity>
         </View>
     );
 }
