@@ -10,6 +10,7 @@ import {StyleSheet, View, TouchableOpacity, Text, TextInput} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import submitName from './src/components/submitName';
+import useCharLimit from './src/hooks/useCharLimit';
 
 /*
     Screen Home.
@@ -32,7 +33,11 @@ const HomeScreen = ({navigation})=>{
  */
 const UsoDoUseStateScreen = ()=>{
     //state + seu setter = valor do state (na ordem de declaração)
-    const [name, setName] = useState('Rafael');
+    const [name, setName] = useCharLimit('', 6); //substituiu useState para utilizar o hoook personalizado
+
+    // useEffect(()=>{
+    //     alert('Executou useEffect');
+    // }, []); //o array vazio siginifica componentDidMount
 
     const handlerButtonClick = ()=>{
         submitName(name, setName); //manda como parâmetro o state e o seu setter
