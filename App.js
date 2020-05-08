@@ -5,7 +5,7 @@
  */
 
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity, Text, TextInput} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -35,9 +35,11 @@ const UsoDoUseStateScreen = ()=>{
     //state + seu setter = valor do state (na ordem de declaração)
     const [name, setName] = useCharLimit('', 6); //substituiu useState para utilizar o hoook personalizado
 
-    // useEffect(()=>{
-    //     alert('Executou useEffect');
-    // }, []); //o array vazio siginifica componentDidMount
+    const textInput = useRef();
+
+    useEffect(()=>{
+        textInput.current.focus();
+    }, []); //o array vazio siginifica componentDidMount
 
     const handlerButtonClick = ()=>{
         submitName(name, setName); //manda como parâmetro o state e o seu setter
@@ -50,7 +52,7 @@ const UsoDoUseStateScreen = ()=>{
     return(
         <View style={styles.containerOutrasScreens}>
             <Text style={styles.text}>Bem vindo (a)</Text>
-            <TextInput style={styles.textInput} value={name} onChangeText={text=>setName(text)} />
+            <TextInput ref={textInput} style={styles.textInput} value={name} onChangeText={text=>setName(text)} />
             <TouchableOpacity style={styles.button} onPress={handlerButtonClick}>
                 <Text style={styles.textButton}>Enviar</Text>
             </TouchableOpacity>
