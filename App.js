@@ -11,6 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import submitName from './src/components/submitName';
 import useCharLimit from './src/hooks/useCharLimit';
+import Contador from './src/components/Contador';
 
 /*
     Screen Home.
@@ -56,6 +57,7 @@ const UsoDoUseStateScreen = ()=>{
             <TouchableOpacity style={styles.button} onPress={handlerButtonClick}>
                 <Text style={styles.textButton}>Enviar</Text>
             </TouchableOpacity>
+            <Contador />
         </View>
     );
 }
