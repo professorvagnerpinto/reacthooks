@@ -1,3 +1,10 @@
+/**
+ * Vídeo #1 ao #13: React Hooks - Módulo 22 - B7Web
+ * Adiquirindo conhecimento em features avançadas: Trabalhando com o React Hooks.
+ * Exemplo de uso de useReducer.
+ * by: Vagner Pinto
+ */
+
 import React, {useReducer} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
@@ -5,6 +12,7 @@ const initialContagem = {
     count:0
 }
 
+//uso de Reducer
 const reducer = (state, action)=>{ //estado atual do state + qual action executar
     switch (action.type) {
         case 'add':
